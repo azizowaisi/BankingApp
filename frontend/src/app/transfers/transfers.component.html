@@ -1,0 +1,52 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Transfer Money</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+          <mat-label>From Account</mat-label>
+          <mat-select formControlName="fromIban" required>
+            <mat-option *ngFor="let account of accounts" [value]="account.iban">
+              {{ account.iban }} ({{ account.balance | number:'1.2-2' }} SEK)
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="transferForm.get('fromIban')?.hasError('required')">
+            Please select a source account
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>To IBAN</mat-label>
+          <input matInput formControlName="toIban" placeholder="Enter receiver IBAN" required>
+          <mat-error *ngIf="transferForm.get('toIban')?.hasError('required')">
+            Receiver IBAN is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Amount (SEK)</mat-label>
+          <input matInput type="number" formControlName="amount" required>
+          <mat-error *ngIf="transferForm.get('amount')?.hasError('required')">
+            Amount is required
+          </mat-error>
+          <mat-error *ngIf="transferForm.get('amount')?.hasError('min')">
+            Amount must be at least 0.01
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Description (Optional)</mat-label>
+          <input matInput formControlName="description">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="loading || transferForm.invalid">
+          <mat-spinner *ngIf="loading" diameter="20" style="display: inline-block; margin-right: 10px;"></mat-spinner>
+          Transfer Money
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+

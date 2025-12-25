@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: banking-platform
+  
+  datasource:
+    url: jdbc:postgresql://postgres:5432/banking_db
+    username: ${DB_USERNAME:banking_user}
+    password: ${DB_PASSWORD:banking_pass}
+    driver-class-name: org.postgresql.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  
+  security:
+    jwt:
+      secret: ${JWT_SECRET:your-256-bit-secret-key-change-in-production-minimum-32-characters}
+      expiration: 86400000 # 24 hours
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+banking:
+  fraud:
+    daily-transfer-limit: 10000.00
+    rapid-transfer-threshold: 5 # transfers per hour
+    rapid-transfer-window-minutes: 60
+
+logging:
+  level:
+    com.banking: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+

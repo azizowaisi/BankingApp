@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened>
+    <mat-toolbar color="primary">
+      <span>Admin Panel</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/admin/accounts" routerLinkActive="active">
+        <mat-icon>account_balance</mat-icon>
+        <span>All Accounts</span>
+      </a>
+      <a mat-list-item routerLink="/admin/audit-logs" routerLinkActive="active">
+        <mat-icon>security</mat-icon>
+        <span>Audit Logs</span>
+      </a>
+      <a mat-list-item routerLink="/admin/fraud-events" routerLinkActive="active">
+        <mat-icon>warning</mat-icon>
+        <span>Fraud Events</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="logout()" style="cursor: pointer;">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>Admin: {{ user?.username }}</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

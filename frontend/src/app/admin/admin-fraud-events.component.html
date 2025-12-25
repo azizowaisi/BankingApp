@@ -1,0 +1,50 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Fraud Events</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="loading" class="text-center">
+        <mat-spinner></mat-spinner>
+      </div>
+      <table mat-table [dataSource]="fraudEvents" *ngIf="!loading" class="mat-elevation-z8">
+        <ng-container matColumnDef="timestamp">
+          <th mat-header-cell *matHeaderCellDef>Timestamp</th>
+          <td mat-cell *matCellDef="let event">{{ event.timestamp | date:'short' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef>User</th>
+          <td mat-cell *matCellDef="let event">{{ event.username }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let event">{{ event.type }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="severity">
+          <th mat-header-cell *matHeaderCellDef>Severity</th>
+          <td mat-cell *matCellDef="let event">
+            <mat-chip [color]="getSeverityColor(event.severity)">{{ event.severity }}</mat-chip>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let event">{{ event.amount ? (event.amount | number:'1.2-2') + ' SEK' : '-' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let event">{{ event.description }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <p *ngIf="!loading && fraudEvents.length === 0" class="text-center">No fraud events found</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
