@@ -23,7 +23,7 @@ SELECT 'Database banking_db initialized successfully' AS status;
 GRANT ALL PRIVILEGES ON DATABASE banking_db TO banking_user;
 
 -- Note: Additional indexes and optimizations can be added here
--- Example indexes (uncomment if needed):
+-- Performance indexes (uncomment if needed):
 -- CREATE INDEX IF NOT EXISTS idx_transactions_timestamp ON transactions(timestamp DESC);
 -- CREATE INDEX IF NOT EXISTS idx_audit_logs_timestamp ON audit_logs(timestamp DESC);
 -- CREATE INDEX IF NOT EXISTS idx_accounts_user_id ON accounts(user_id);

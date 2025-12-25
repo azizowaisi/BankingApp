@@ -25,7 +25,7 @@
 ## 📝 First Steps
 
 1. **Login as admin** at http://localhost:4200
-2. **Create a test customer account:**
+2. **Create a customer account:**
    - Register a new user
    - Login with the new user
    - Create a bank account

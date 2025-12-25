@@ -1,6 +1,6 @@
 # Secure Digital Banking & Payments Platform
 
-A production-grade digital banking system demonstrating security, transactional integrity, auditability, clean architecture, and scalability. Built with Java Spring Boot backend and Angular frontend.
+A production-grade digital banking system with enterprise-level security, transactional integrity, auditability, clean architecture, and scalability. Built with Java Spring Boot backend and Angular frontend.
 
 ## 🏗️ Architecture
 
@@ -289,7 +289,7 @@ spring:
 - `DB_PASSWORD`: PostgreSQL password (default: banking_pass)
 - `JWT_SECRET`: JWT signing secret (change in production!)
 
-## 📋 Sample API Calls
+## 📋 API Usage Examples
 
 ### Register User
 
@@ -299,7 +299,7 @@ curl -X POST http://localhost:8080/api/auth/register \
   -d '{
     "username": "john_doe",
     "password": "securepass123",
-    "email": "john@example.com",
+    "email": "john@banking.com",
     "firstName": "John",
     "lastName": "Doe"
   }'
@@ -415,7 +415,7 @@ docker-compose -f docker-compose.prod.yml up -d
 
 ## 🤝 Contributing
 
-This is a demonstration project. For production use, ensure:
+For production deployment, ensure:
 - Comprehensive security audit
 - Penetration testing
 - Performance testing
@@ -424,14 +424,10 @@ This is a demonstration project. For production use, ensure:
 
 ## 📄 License
 
-This project is for demonstration purposes.
-
-## 👥 Author
-
-Built for senior-level job interview demonstration.
+Proprietary - All rights reserved
 
 ---
 
-**Note**: This system is designed to demonstrate enterprise-level banking software architecture. For production use, additional security measures, compliance checks, and regulatory approvals would be required.
+**Note**: This system implements enterprise-level banking software architecture. Additional security measures, compliance checks, and regulatory approvals are required for production deployment.
 
 # BankingApp
